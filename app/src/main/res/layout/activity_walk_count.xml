@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WalkCountActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,6 +18,52 @@
             android:layout_height="wrap_content"
             android:onClick="onBtnFinishClicked"
             android:text="이전으로"/>
-    </LinearLayout>
 
-</android.widget.LinearLayout>
+    </LinearLayout>
+    <EditText
+        android:id="@+id/edtstreet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="81dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="걸은거리" />
+
+
+    <TextView
+        android:id="@+id/txtTime"
+        android:layout_width="221dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="168dp"
+        android:gravity="center"
+        android:text="00:00:00"
+        android:textSize="40dp" />
+
+
+    <EditText
+        android:id="@+id/edtcal"
+        android:layout_width="77dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/edtwalk"
+        android:layout_marginStart="41dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="칼로리" />
+
+    <EditText
+        android:id="@+id/edtwalk"
+        android:layout_width="78dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="191dp"
+        android:layout_marginEnd="61dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="걸음수" />
+</android.widget.RelativeLayout>
