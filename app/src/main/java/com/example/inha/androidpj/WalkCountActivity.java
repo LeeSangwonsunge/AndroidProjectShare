@@ -12,11 +12,14 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.view.View;
 import android.view.Window;
+import java.text.DecimalFormat;
 
 public class WalkCountActivity extends AppCompatActivity implements SensorEventListener {
 
     private Handler wHandler;
     public static int cnt = 0;
+    public static double Ccnt = 0.0;
+    private DecimalFormat decimalFormat = new DecimalFormat("#.###");
     private EditText edtstreet;
     private EditText edtcal;
     private EditText edtwalk;
@@ -29,7 +32,7 @@ public class WalkCountActivity extends AppCompatActivity implements SensorEventL
     private float lastZ;
     private float x, y, z;
 
-    private static final int SHAKE_THRESHOLD = 750;
+    private static final int SHAKE_THRESHOLD = 800;
     private static final int DATA_X = SensorManager.DATA_X;
     private static final int DATA_Y = SensorManager.DATA_Y;
     private static final int DATA_Z = SensorManager.DATA_Z;
@@ -49,9 +52,13 @@ public class WalkCountActivity extends AppCompatActivity implements SensorEventL
         edtstreet = (EditText)findViewById(R.id.edtstreet);
         edtcal = (EditText)findViewById(R.id.edtcal);
         edtwalk = (EditText)findViewById(R.id.edtwalk);
+        txtTime = (TextView)findViewById(R.id.txtTime);
+
 
         edtwalk.setText("" +cnt);
+        edtcal.setText("" +Ccnt);
     }
+
     @Override
     public void onStart(){
         super.onStart();
@@ -79,6 +86,7 @@ public class WalkCountActivity extends AppCompatActivity implements SensorEventL
 
                 if (speed > SHAKE_THRESHOLD) {
                     edtwalk.setText("" + (++cnt));
+                    edtcal.setText(""+ (++Ccnt*0.033) +"cal");
                 }
 
                 lastX = event.values[DATA_X];
@@ -90,8 +98,5 @@ public class WalkCountActivity extends AppCompatActivity implements SensorEventL
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
-
-    public void onBtnFinishClicked(View view){
-        finish();
-    }
+    public void onBtnFinishClicked(View view){ finish(); }
 }

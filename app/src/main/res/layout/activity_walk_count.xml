@@ -46,18 +46,18 @@
 
     <EditText
         android:id="@+id/edtcal"
-        android:layout_width="77dp"
+        android:layout_width="118dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/edtwalk"
-        android:layout_marginStart="41dp"
+        android:layout_marginStart="43dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="칼로리" />
 
     <EditText
         android:id="@+id/edtwalk"
-        android:layout_width="78dp"
+        android:layout_width="96dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
@@ -66,4 +66,5 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="걸음수" />
+
 </android.widget.RelativeLayout>
