@@ -29,7 +29,9 @@
         android:layout_marginTop="81dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="걸은거리" />
+        android:textSize="32dp"
+        android:textAlignment="center"
+        android:text="0.00m" />
 
 
     <TextView
@@ -66,5 +68,15 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="걸음수" />
+
+    <Button
+        android:id="@+id/btnstart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:onClick="mOnClick"
+        android:text="시작"
+        />
 
 </android.widget.RelativeLayout>

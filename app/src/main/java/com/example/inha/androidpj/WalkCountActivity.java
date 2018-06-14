@@ -2,6 +2,7 @@ package com.example.inha.androidpj;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.hardware.Sensor;
@@ -24,6 +25,8 @@ public class WalkCountActivity extends AppCompatActivity implements SensorEventL
     private EditText edtcal;
     private EditText edtwalk;
     private TextView txtTime;
+    long BaseTime;
+    final static int IDLE = 0;
 
     private long lastTime;
     private float speed;
@@ -58,7 +61,31 @@ public class WalkCountActivity extends AppCompatActivity implements SensorEventL
         edtwalk.setText("" +cnt);
         edtcal.setText("" +Ccnt);
     }
-
+    Handler mTimer = new Handler(){
+        public void handleMessage(android.os.Message msg) {
+            txtTime.setText(getEllapse());
+            mTimer.sendEmptyMessage(0);//0은 메시지를 구분하기 위한 것
+        };
+    };
+    @Override
+    protected void onDestroy() {
+        mTimer.removeMessages(0);//메시지를 지워서 메모리릭 방지
+        super.onDestroy();
+    }
+    public void mOnClick(View v){
+        switch(v.getId()){
+            case R.id.btnstart:
+                        BaseTime = SystemClock.elapsedRealtime();
+                        mTimer.sendEmptyMessage(0);
+                        break;
+                }
+        }
+    String getEllapse(){
+        long now = SystemClock.elapsedRealtime();
+        long ell = now - BaseTime;
+        String sEll = String.format("%02d:%02d:%02d", ell / 1000 / 60, (ell/1000)%60, (ell %1000)/10);
+        return sEll;
+    }
     @Override
     public void onStart(){
         super.onStart();
