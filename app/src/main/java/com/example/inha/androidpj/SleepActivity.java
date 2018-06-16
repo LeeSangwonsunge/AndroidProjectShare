@@ -59,9 +59,6 @@ public class SleepActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Please enable the gps", Toast.LENGTH_SHORT).show();
         }
-
-
-
         fn_permission();
 
     }
