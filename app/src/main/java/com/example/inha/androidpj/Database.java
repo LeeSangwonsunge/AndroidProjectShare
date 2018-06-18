@@ -18,7 +18,7 @@ public class Database extends SQLiteOpenHelper {
         // 새로운 테이블 생성
         /* 이름은 MONEYBOOK이고, 자동으로 값이 증가하는 _id 정수형 기본키 컬럼과
         item 문자열 컬럼, price 정수형 컬럼, create_at 문자열 컬럼으로 구성된 테이블을 생성. */
-        db.execSQL("CREATE TABLE Location (_id INTEGER PRIMARY KEY AUTOINCREMENT, item TEXT, price INTEGER, create_at TEXT);");
+        db.execSQL("CREATE TABLE Location1 (_id INTEGER PRIMARY KEY AUTOINCREMENT, lat TEXT, lon TEXT);");
     }
 
     // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
@@ -32,22 +32,22 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
         //db.execSQL("INSERT INTO MONEYBOOK VALUES(null, '" + item + "', " + price + ", '" + create_at + "');");
-        db.execSQL("INSERT INTO Location VALUES(null, '" + lat + "','"+lon+"');");
+        db.execSQL("INSERT INTO Location1 VALUES(null, '" + lat + "','"+lon+"');");
         db.close();
     }
 
-    public void update(String location, String loca) {
+    public void update(String Location1, String loca) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행의 가격 정보 수정
         //db.execSQL("UPDATE MONEYBOOK SET price=" + price + " WHERE item='" + item + "';");
-        db.execSQL("UPDATE Location SET price=" + location + " WHERE item='" + loca + "';");
+        db.execSQL("UPDATE Location1 SET price=" + Location1 + " WHERE item='" + loca + "';");
         db.close();
     }
 
     public void delete(String item) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행 삭제
-        db.execSQL("DELETE FROM Location WHERE item='" + item + "';");
+        db.execSQL("DELETE FROM Location1 WHERE item='" + item + "';");
         db.close();
     }
     public String getResult() {
@@ -56,7 +56,7 @@ public class Database extends SQLiteOpenHelper {
         String result = "";
 
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
-        Cursor cursor = db.rawQuery("SELECT * FROM Location", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Location1", null);
         while (cursor.moveToNext()) {
             result += cursor.getString(0)
                     + " : "

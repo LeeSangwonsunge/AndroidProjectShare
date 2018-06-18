@@ -79,7 +79,7 @@ public class GPSService extends Service implements LocationListener {
         isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetworkEnable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-        final Database db = new Database(getApplicationContext(), "Location.db",null,1);
+        final Database db = new Database(getApplicationContext(), "Location1.db",null,1);
 
         if (!isGPSEnable && !isNetworkEnable) {
 
@@ -108,7 +108,7 @@ public class GPSService extends Service implements LocationListener {
                         latitude = location.getLatitude();
                         longitude = location.getLongitude();
                         fn_update(location);
-                        db.insert(location.getLatitude()+"", location.getLongitude()+"");
+                        db.insert(latitude+"", longitude+"");
                     }
                 }
 
@@ -117,7 +117,7 @@ public class GPSService extends Service implements LocationListener {
 
             if (isGPSEnable){
                 location = null;
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,0,this);
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,0,this);
                 if (locationManager!=null){
                     location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                     if (location!=null){

@@ -7,9 +7,8 @@ import android.widget.TextView;
 
 public class DBActivity extends AppCompatActivity {
 
-    TextView tvSelect = (TextView)findViewById(R.id.TVselect);
+    TextView tvSelect;
 
-    final Database db = new Database(getApplicationContext(), "Location.db",null,1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +20,10 @@ public class DBActivity extends AppCompatActivity {
         finish();
     }
 
-    public void onBtnSelectClicked(View view){
-
-
-        tvSelect.setText("");
+    public void onBtnSelectClicked(View view)throws Exception{
+        tvSelect=(TextView)findViewById(R.id.TVselect);ㄹ
+        final Database db = new Database(getApplicationContext(), "Location1.db",null,1);
+        String result = db.getResult();
+        tvSelect.setText(result);
     }
 }
