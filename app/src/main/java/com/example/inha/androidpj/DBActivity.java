@@ -21,7 +21,7 @@ public class DBActivity extends AppCompatActivity {
     }
 
     public void onBtnSelectClicked(View view)throws Exception{
-        tvSelect=(TextView)findViewById(R.id.TVselect);ㄹ
+        tvSelect=(TextView)findViewById(R.id.TVselect);
         final Database db = new Database(getApplicationContext(), "Location1.db",null,1);
         String result = db.getResult();
         tvSelect.setText(result);
