@@ -47,7 +47,9 @@
         <activity android:name=".SleepActivity"></activity>
         <service android:name=".GPSService"></service>
         <activity android:name=".DBActivity"></activity>
+        <service android:name=".GPSService" />
 
+        <activity android:name=".Calendar"></activity>
     </application>
 
 </manifest>
