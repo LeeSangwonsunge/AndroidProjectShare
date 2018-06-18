@@ -43,5 +43,12 @@
             android:layout_weight="1"
             android:onClick="onBtnLocationClicked"
             android:text="위치정보" />
+        <Button
+            android:id="@+id/btn_DB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onBtnDBClicked"
+            android:text="DB Test" />
     </LinearLayout>
 </android.widget.LinearLayout>

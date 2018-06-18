@@ -41,4 +41,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LocationActivity.class);
         startActivity(intent);
     }
+
+    public void onBtnDBClicked(View view){
+        Intent intent = new Intent(this, DBActivity.class);
+        startActivity(intent);
+    }
+
 }

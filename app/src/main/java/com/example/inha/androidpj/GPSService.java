@@ -32,6 +32,7 @@ public class GPSService extends Service implements LocationListener {
     Intent intent;
 
 
+
     public GPSService() {
 
     }
@@ -49,6 +50,7 @@ public class GPSService extends Service implements LocationListener {
         mTimer = new Timer();
         mTimer.schedule(new TimerTaskToGetLocation(), 5, notify_interval);
         intent = new Intent(str_receiver);
+
 //        fn_getlocation();
     }
 
@@ -77,6 +79,8 @@ public class GPSService extends Service implements LocationListener {
         isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetworkEnable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
+        final Database db = new Database(getApplicationContext(), "Location.db",null,1);
+
         if (!isGPSEnable && !isNetworkEnable) {
 
         } else {
@@ -93,7 +97,7 @@ public class GPSService extends Service implements LocationListener {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, this);
                 if (locationManager!=null){
                     location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                     if (location!=null){
@@ -104,6 +108,7 @@ public class GPSService extends Service implements LocationListener {
                         latitude = location.getLatitude();
                         longitude = location.getLongitude();
                         fn_update(location);
+                        db.insert(location.getLatitude()+"", location.getLongitude()+"");
                     }
                 }
 
@@ -121,6 +126,7 @@ public class GPSService extends Service implements LocationListener {
                         latitude = location.getLatitude();
                         longitude = location.getLongitude();
                         fn_update(location);
+                        db.insert(location.getLatitude()+"", location.getLongitude()+"");
                     }
                 }
             }
