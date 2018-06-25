@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnWalkCountClicked(View view){
-        Intent intent = new Intent(this, WalkCountActivity.class);
+        Intent intent = new Intent(this,WalkCountActivity.class);
         startActivity(intent);
     }
 

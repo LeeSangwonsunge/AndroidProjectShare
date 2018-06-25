@@ -9,7 +9,6 @@ public class DBActivity extends AppCompatActivity {
 
     TextView tvSelect;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
