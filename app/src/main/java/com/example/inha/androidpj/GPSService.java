@@ -48,7 +48,7 @@ public class GPSService extends Service implements LocationListener {
         super.onCreate();
 
         mTimer = new Timer();
-        mTimer.schedule(new TimerTaskToGetLocation(), 5, notify_interval);
+        mTimer.schedule(new TimerTaskToGetLocation(), 5000, notify_interval);
         intent = new Intent(str_receiver);
 
 //        fn_getlocation();
@@ -97,7 +97,7 @@ public class GPSService extends Service implements LocationListener {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, this);
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500000, 0, this);
                 if (locationManager!=null){
                     location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                     if (location!=null){
@@ -117,7 +117,7 @@ public class GPSService extends Service implements LocationListener {
 
             if (isGPSEnable){
                 location = null;
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,0,this);
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,500000,0,this);
                 if (locationManager!=null){
                     location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                     if (location!=null){
@@ -130,8 +130,6 @@ public class GPSService extends Service implements LocationListener {
                     }
                 }
             }
-
-
         }
 
     }
