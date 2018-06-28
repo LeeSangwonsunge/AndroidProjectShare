@@ -11,12 +11,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private GPSService gpsService;
 
+    Button btnSleep;
+    TextView TVDate;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,9 +50,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         startService(new Intent(this, GPSService.class));
 
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        String str_date = df.format(new Date());
+
+        TVDate = findViewById(R.id.TVDate);
+        TVDate.setText(checkDateString());
         Intent incomingIntent = getIntent();
         String date = incomingIntent.getStringExtra("date");
         Toast.makeText(this, date, Toast.LENGTH_LONG).show();
+        checkDateString();
+
     }
 
     public void onBtnWalkCountClicked(View view){
@@ -71,4 +87,42 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onBtnCircleClicked(View view){
+        Intent intent = new Intent(this, CircleActivity.class);
+        startActivity(intent);
+    }
+
+
+    private String checkDateString() {
+
+        final Database db = new Database(getApplicationContext(), "Location3.db",null,1);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        String str_date = df.format(new Date());
+        Log.e("time",str_date+"");
+        int cnt1 = 0;
+        btnSleep=findViewById(R.id.btn_Circle);
+        ArrayList<String> strList = db.getResult();
+        String[] strArray ;
+        if(db.getDateResult(str_date)!=null){
+            strArray=db.getDateResult("2018-06-27");
+
+            String[] cnt = strArray[1].split("/");
+
+            Log.e("dbR",cnt[1]+"");
+
+            for (int i=0; i<cnt.length; i++){
+                if(cnt[i].equals("sleep")){
+                    cnt1=cnt1+1;
+                }
+
+            }
+            Log.e("cnt",cnt1+"");
+
+            double cntDouble = cnt1/4;
+            btnSleep.setText("수면 : "+cntDouble+"시간");
+        }
+
+
+        return str_date;
+    }
 }

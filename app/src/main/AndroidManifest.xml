@@ -50,6 +50,7 @@
         <service android:name=".GPSService" />
 
         <activity android:name=".Calendar"></activity>
+        <activity android:name=".CircleActivity"></activity>
     </application>
 
 </manifest>

@@ -27,5 +27,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile 'com.google.android.gms:play-services:11.0.0'
+    compile 'com.github.PhilJay:MpAndroidChart:v3.0.2'
+}
 
+repositories{
+    maven {url "https://jitpack.io"}
 }
